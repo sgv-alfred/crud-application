@@ -76,8 +76,8 @@ $ npm run dev
 
 ### Production
 ```bash
-$ git clone https://github.com/sgv-alfred/crud-application.git
-$ cd crud-application
+$ docker pull alfredmaluya/crud_application
+$ docker run --name crud-application -d -p 3000:3000 alfredmaluya/crud_application:latest
 $ npm install
 $ npx prisma db push
 $ npx prisma generate
@@ -85,4 +85,9 @@ $ npm run build
 $ npm run start
 ```
 
+### Deployment (Github Docker Workflow Pipeline)
+```bash
+$ docker pull alfredmaluya/crud_application
+$ docker run --name crud-application -d -p 3000:3000 alfredmaluya/crud_application:latest
+```
 Note: Make sure your MySQL database is running and the connection details are properly configured in your .env file before running the commands
