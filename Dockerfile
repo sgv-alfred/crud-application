@@ -13,6 +13,11 @@ COPY package.json package-lock.json ./
 # Install dependencies
 RUN npm install
 
+ARG DATABASE_URL
+ARG JWT_SECRET
+
+ENV DATABASE_URL=$DATABASE_URL
+ENV JWT_SECRET=$JWT_SECRET
 # Copy the rest of the application files
 COPY . .
 
