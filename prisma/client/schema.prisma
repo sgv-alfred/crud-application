@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model products {
+  id           Int            @id @default(autoincrement())
+  Name         String         @db.VarChar(256)
+  Quantity     Int
+  Description  String?        @db.VarChar(256)
+  Price        Decimal        @db.Decimal(10, 4)
+  status       Int            @default(0)
+  createdBy    Int
+  users        users          @relation(fields: [createdBy], references: [id], onUpdate: Restrict, map: "fk_userid")
+  transactions transactions[]
+
+  @@unique([id, Description], map: "id")
+  @@index([createdBy], map: "fk_userid")
+}
+
+model users {
+  id           Int            @id @default(autoincrement())
+  username     String         @unique(map: "uq_username") @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  firstname    String?        @db.VarChar(255)
+  lastname     String?        @db.VarChar(255)
+  products     products[]
+  transactions transactions[]
+}
+
+model transactions {
+  id          Int      @id @default(autoincrement())
+  userid      Int
+  productid   Int
+  quantity    Int
+  totalamt    Decimal  @db.Decimal(10, 4)
+  dateCreated DateTime @default(now()) @db.Date
+  users       users    @relation(fields: [userid], references: [id], onUpdate: Restrict, map: "fk_customerid")
+  products    products @relation(fields: [productid], references: [id], onUpdate: Restrict, map: "fk_productid")
+
+  @@index([userid], map: "fk_customerid")
+  @@index([productid], map: "fk_productid")
+}
