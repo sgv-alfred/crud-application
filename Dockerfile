@@ -30,7 +30,7 @@ COPY . .
 RUN npx prisma generate
 
 # Push the Prisma schema to the database (optional: skip if running externally)
-RUN npx prisma db push
+# RUN npx prisma db push
 
 # Build the Next.js app
 RUN npm run build

@@ -91,3 +91,6 @@ $ docker pull alfredmaluya/crud_application
 $ docker run --name crud-application -d -p 3000:3000 alfredmaluya/crud_application:latest
 ```
 Note: Make sure your MySQL database is running and the connection details are properly configured in your .env file before running the commands
+
+### Import Data to MySQL Database
+Manually import the database found in /prisma/extred db
