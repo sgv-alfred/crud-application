@@ -18,6 +18,9 @@ ARG JWT_SECRET
 
 ENV DATABASE_URL=$DATABASE_URL
 ENV JWT_SECRET=$JWT_SECRET
+
+RUN echo "DATABASE_URL is $DATABASE_URL"
+RUN echo "JWT_SECRET is $JWT_SECRET"
 # Copy the rest of the application files
 COPY . .
 
