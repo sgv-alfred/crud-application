@@ -8,7 +8,7 @@ type PrismaErrorHandled = {
   statusCode: number
 }
 
-export function handlePrismaError(error: any): PrismaErrorHandled | null {
+export function handlePrismaError(error: unknown): PrismaErrorHandled | null {
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     switch (error.code) {
       case 'P2002': // Unique constraint failed

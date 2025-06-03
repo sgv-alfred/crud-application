@@ -2,8 +2,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { getAuthToken } from '@/lib/helpers/cookies';
+import {UserPayload} from "@/lib/interface"
 
-export async function authorize(req: NextRequest) {
+
+export async function authorize() {
   // remove the jwt in client
   // const authHeader = req.headers.get("authorization");
   // if (!authHeader) {
@@ -26,20 +28,22 @@ export async function authorize(req: NextRequest) {
 }
 
 
-export function withAuth(handler: (body: any, user: any) => Promise<Response>) {
+export function withAuth<T>(
+  handler: (body: T | null, user: UserPayload) => Promise<Response>
+) {
   return async (req: NextRequest) => {
-    const authResult = await authorize(req);
+    console.log(req.method)
+    const authResult = await authorize();
     if (authResult instanceof NextResponse) {
       return authResult;
     }
 
-    const user = authResult.payload;
-
-    let body = null;
+    const user =  authResult.payload as UserPayload;;
+    let body: T | null = null;
     if (req.method === 'POST' || req.method === 'PUT') {
       try {
         body = await req.json();
-      } catch (e) {
+      } catch {
         return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
       }
     }

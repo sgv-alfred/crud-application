@@ -13,9 +13,11 @@ export async function withErrorHandler<data>(
   try {
     const data = await functionHolder()
     return { data, error: null, statusCode: 200 }
-  } catch (error: any) {
-    let message = error || 'Internal Server Error'
+  } catch (error: unknown) {
+    let message = 'Internal Server Error'
     let statusCode = 500
+
+    if (typeof error === 'string') message = error
 
     const prismaError = handlePrismaError(error)
     

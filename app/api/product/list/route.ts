@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 import { getProductsByStatus } from '@/lib/services/products'
 import { withErrorHandler } from '@/lib/services/errorHandler'
 import { withAuth } from "@/lib/middleware/authenticate";
-import {ProductStatusSchema} from "@/lib/validators/productValidator"
+import {ProductStatusSchema, createProductInput} from "@/lib/validators/productValidator"
 
-export const POST = withAuth(async (body: any) => {
+export const POST = withAuth(async (body: createProductInput | null) => {
   
 
    const { data, error, statusCode } = await withErrorHandler(async() => {

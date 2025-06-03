@@ -56,8 +56,12 @@ export default function CreateProductPage() {
         description: "",
         image: "",
       });
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+        let message = 'An unexpected error occurred';
+        if (err instanceof Error) {
+          message = err.message;
+        }
+        setError(message);
     } finally {
       setLoading(false);
     }

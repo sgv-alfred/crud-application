@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 
 type Product = {
   id: number;
@@ -36,8 +37,13 @@ export default function ApprovalPage() {
 
         // Assuming data is an array of products
         setProducts(data.data);
-      } catch (err: any) {
-        setError(err.message || "An unexpected error occurred");
+      } catch (err: unknown) {
+        let message = 'An unexpected error occurred';
+        if (err instanceof Error) {
+          message = err.message;
+        }
+        setError(message);
+
       } finally {
         setLoading(false);
       }
@@ -49,7 +55,7 @@ export default function ApprovalPage() {
 
 
   const handleApprove = async (id: number) => {
-     const res = await fetch("/api/product/approve", {
+      await fetch("/api/product/approve", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -61,7 +67,7 @@ export default function ApprovalPage() {
   };
 
   const handleReject = async (id: number) => {
-     const res = await fetch("/api/product/reject", {
+     await fetch("/api/product/reject", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -92,10 +98,12 @@ export default function ApprovalPage() {
               key={product.id}
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
             >
-              <img
+              <Image
                 src={product.image || "https://dummyimage.com/300x200/cccccc/555555&text=No+Image"}
                 alt={product.Name}
                 className="w-full h-48 object-cover"
+                width={300}
+                height={200}
               />
               <div className="p-4">
                 <h2 className="text-xl font-semibold text-gray-800">

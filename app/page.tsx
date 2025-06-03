@@ -38,8 +38,12 @@ export default function LoginPage() {
       // setTimeout(() => {
         router.push('/products');
       // }, 1500);
-    } catch (err: any) {
-      setNotification({ message: err.message, type: 'error' });
+    } catch (err: unknown) {
+      let message = 'An unexpected error occurred';
+      if (err instanceof Error) {
+        message = err.message;
+      }
+      setNotification({ message: message, type: 'error' });
     } finally {
       setIsSubmitting(false);
     }
@@ -50,7 +54,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-md">
 
         {token && (
-        <h2 className="text-2xl font-bold text-center text-gray-800">You're already login!</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800">{`You're already login!`}</h2>
         )}
         {notification && (
           <div
