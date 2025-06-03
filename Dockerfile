@@ -17,8 +17,9 @@ ARG DATABASE_URL
 ARG JWT_SECRET
 
 
-ENV DATABASE_URL=${DATABASE_URL}
-ENV JWT_SECRET=${JWT_SECRET}
+# ✅ Hardcoded environment variables (for demo purposes)
+ENV DATABASE_URL="mysql://root@host.docker.internal:3307/crud?schema=public"
+ENV JWT_SECRET="TestAPI"
 
 RUN echo "DATABASE_URL is $DATABASE_URL"
 RUN echo "JWT_SECRET is $JWT_SECRET"

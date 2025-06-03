@@ -28,6 +28,3 @@ jobs:
           context: .
           push: true
           tags: alfredmaluya/crud_application:latest
-          build-args: | 
-            DATABASE_URL: ${{ secrets.DATABASE_URL }}
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
