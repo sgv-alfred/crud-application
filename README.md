@@ -48,7 +48,7 @@ crup-app/
 └── README.md                  # Project overview and setup instructions
 
 ## API Documentation 
-### (please visit the API Documentation, https://documenter.getpostman.com/view/10488164/2sB2qi7HYt.)
+(please visit the API Documentation, https://documenter.getpostman.com/view/10488164/2sB2qi7HYt.)
 For a demonstration comparing Prisma ORM and raw SQL queries, 
 Refer to the following endpoints for examples:
 api/product/list/raw — Raw SQL query implementation
