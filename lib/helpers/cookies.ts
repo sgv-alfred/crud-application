@@ -7,7 +7,7 @@ export async function  setAuthCookie(token: string) {
     httpOnly: true,
     sameSite: 'strict',
     path: '/',
-    maxAge: 60 * 60 // 1 hr
+    maxAge: 60 * 120 // 2 hrs
     });
 }
 
