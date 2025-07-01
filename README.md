@@ -1,7 +1,7 @@
 # Product Inventory application 
 
 ## Description
-This is built using **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **MySQL**, demonstrating essential **CRUD** operations while following **RESTful API design principles**. The project is designed as a clean, scalable foundation for building full-stack applications with modern standard practices.
+This is built using **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **MySQL**, demonstrating essential **CRUD** operations while following **RESTful API design principles**. The project is designed as a clean, scalable foundation for building full-stack applications with modern standard practices for demo purposes.
 
 ## 🚀 Features & Best Practices
 
